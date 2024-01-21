@@ -1,13 +1,23 @@
+import java.util.Enumeration;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        int number;
         //количество человек
         while (true) {
             System.out.println("На скольких человек необходимо разделить счёт?");
-            int number = scanner.nextInt();
+            try
+            {
+                number = scanner.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Неверное значение! Попробуйте еще раз.");
+                continue;
+            }
+
             if (number <= 1)
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
@@ -20,7 +30,7 @@ public class Main {
         //добавление товаров
         String product;
         double price;
-        Calculator goods = new Calculator();
+        Calculator goods = new Calculator(number);
 
         while (true) {
             //1) Запросите у пользователя название товара и его стоимость. Стоимость должна быть в
@@ -71,7 +81,7 @@ public class Main {
             String answer = scanner.next();
             if (answer.equalsIgnoreCase("завершить"))
             {
-
+                goods.printAll();
                 break;
             }
         }
