@@ -32,17 +32,48 @@ public class Main {
             System.out.println("Введите стоимость товара:");
             price = scanner.nextDouble();
 
-            String parse = String.valueOf(price);
+            String[] parsesParts = String.valueOf(price).split("\\.");
+            int r = Integer.parseInt(parsesParts[0]);
+            int k;
+            if (!parsesParts[1].substring(0,1).equals("0"))
+            {
+                k = Integer.parseInt(parsesParts[1])*10;
+            }
+            else
+            {
+                k = Integer.parseInt(parsesParts[1]);
+            }
 
-            String[] parsesParts = parse.split("\\.");
+            String partOne;
+            if ((r % 10) == 1)
+                partOne = " рубль ";
+            else if ((r % 10)>=2 && (r % 10)<=4)
+                partOne = " рубля ";
+            else
+                partOne = " рублей ";
 
-            System.out.println("Товар " + product + " с ценой " + parsesParts[0]
-                    + (((Integer.parseInt(parsesParts[0]) >=0 && Integer.parseInt(parsesParts[0]) <=4) ) ? " рубля " : " рублей ")
-                    + parsesParts[1] + " копеек " + " успешно добавлен!\n");
+            String partTwo;
+            if ((k % 10) == 1)
+                partTwo = " копейка ";
+            else if ((k % 10)>=2 && k % 10 <=4)
+                partTwo = " копейки ";
+            else
+                partTwo = " копеек ";
+
+            System.out.println("Товар " + product + " с ценой " + r
+                    + partOne
+                    + k + partTwo + " успешно добавлен!\n");
 
             //2) Полученный товар должен быть добавлен в калькулятор.
             goods.addProduct(product, price);
 
+            System.out.println("Хотите ли Вы добавить еще один товар?");
+            String answer = scanner.next();
+            if (answer.equalsIgnoreCase("завершить"))
+            {
+
+                break;
+            }
         }
 
     }
