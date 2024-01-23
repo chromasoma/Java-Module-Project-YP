@@ -1,46 +1,83 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Calculator {
 
     private double sum = 0;
     private int number;
-    Calculator(int n)
+
+    ArrayList<Product> goods = new ArrayList<>();
+    public void setNumber()
     {
-        number = n;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("На скольких человек необходимо разделить счёт?");
+            try
+            {
+                number = scanner.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Неверное значение! Попробуйте еще раз.");
+                scanner.next();
+                continue;
+            }
+
+            if (number <= 1)
+            {
+                System.out.println("Неверное значение! Попробуйте еще раз.");
+            }
+            else
+            {
+                break;
+            }
+        }
     }
-    HashMap<String, Double> map = new HashMap<>();
-    public String rublesStr(int r)
+    public void setProducts()
     {
-        if ((r % 10) == 1)
-            return " рубль ";
-        else if ((r % 10)>=2 && (r % 10)<=4)
-            return " рубля ";
-        else
-            return " рублей ";
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            //1) Запросите у пользователя название товара и его стоимость. Стоимость должна быть в
+            // формате рубли.копейки, например 10.45 или 11.40.
+
+            Product product = new Product();
+            product.setProduct();
+            sum += product.getPrice();
+            goods.add(product);
+
+            System.out.println("Хотите ли Вы добавить еще один товар?");
+            String answer = scanner.next();
+            if (answer.equalsIgnoreCase("завершить"))
+            {
+                this.printAll();
+                break;
+            }
+        }
     }
+
     public void printAll()
     {
-        System.out.println("Добавленные товары:");
-        for (String key : map.keySet())
-        {
-            int r = (int)(map.get(key) - (map.get(key) % 1));
-            String rr = rublesStr(r);
+        Formatter f = new Formatter();
 
-            System.out.println(key + " " + map.get(key) + rr);
+        System.out.println("Добавленные товары:");
+        for (Product g: goods)
+        {
+            int r = (int)(g.getPrice() - (g.getPrice() % 1));
+            String rr = f.getRubles(r);
+
+            System.out.println(g.getName() + " " + g.getPrice() + rr);
         }
         System.out.println("Каждый человек должен заплатить " +
-                String.format("%.2f", sum / number) + rublesStr((int)(sum / number)));
+                String.format("%.2f", sum / number) + f.getRubles((int)(sum / number)));
     }
-    public double getPrice(String n)
+
+    public void addProduct(Product p)
     {
-        return map.get(n);
+        goods.add(p);
+        sum += p.getPrice();
     }
-    public void changePrice(String n, double p) { map.put(n, p); }
-    public void addProduct(String n, double p)
-    {
-        map.put(n, p);
-        sum += p;
-    }
-    public double deleteProduct(String n) { return map.remove(n); }
+    public boolean deleteProduct(Product p) { return goods.remove(p); }
     public double getSum() { return sum; }
 }
