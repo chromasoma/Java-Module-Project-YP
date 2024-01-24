@@ -11,27 +11,24 @@ public class Calculator {
     {
         Scanner scanner = new Scanner(System.in);
         String temp;
+        System.out.println("На скольких человек необходимо разделить счёт?");
         while (true) {
-            System.out.println("На скольких человек необходимо разделить счёт?");
             try
             {
-                temp = scanner.nextLine();
+                temp = scanner.nextLine().trim();
+                System.out.println("1"+temp+"2");
+                number = Integer.parseInt(temp);
+                if (number <= 1 || !temp.matches("^[0-9]+$"))
+                {
+                    throw new Exception("Неверное значение! Попробуйте еще раз.");
+                }
+                break;
             }
             catch (Exception e)
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
                 scanner.next();
                 continue;
-            }
-
-            if (number <= 1 || temp.matches("^[0-9]+$"))
-            {
-                System.out.println("Неверное значение! Попробуйте еще раз.");
-            }
-            else
-            {
-                number = Integer.parseInt(temp);
-                break;
             }
         }
     }
