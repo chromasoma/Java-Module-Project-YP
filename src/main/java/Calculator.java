@@ -10,12 +10,12 @@ public class Calculator {
     public void setNumber()
     {
         Scanner scanner = new Scanner(System.in);
-
+        String temp;
         while (true) {
             System.out.println("На скольких человек необходимо разделить счёт?");
             try
             {
-                number = scanner.nextInt();
+                temp = scanner.nextLine();
             }
             catch (Exception e)
             {
@@ -24,12 +24,13 @@ public class Calculator {
                 continue;
             }
 
-            if (number <= 1)
+            if (number <= 1 || temp.matches("^[0-9]+$"))
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
             }
             else
             {
+                number = Integer.parseInt(temp);
                 break;
             }
         }
@@ -48,7 +49,7 @@ public class Calculator {
             goods.add(product);
 
             System.out.println("Хотите ли Вы добавить еще один товар?");
-            String answer = scanner.next();
+            String answer = scanner.nextLine();
             if (answer.equalsIgnoreCase("завершить"))
             {
                 this.printAll();
