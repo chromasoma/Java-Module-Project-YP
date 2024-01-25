@@ -20,7 +20,7 @@ public class Product {
                 temp = scanner.nextLine().trim();
                 price = Double.parseDouble(temp);
                 if (price < 0) {
-                    throw new Exception("String is not double!");
+                    throw new Exception("Некорректные данные!");
                 }
                 Formatter f = new Formatter();
                 String[] s = new String[4];
