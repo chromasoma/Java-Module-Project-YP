@@ -17,7 +17,7 @@ public class Product {
         {
             try
             {
-                temp = scanner.nextLine();
+                temp = scanner.nextLine().trim();
                 price = Double.parseDouble(temp);
                 if (price < 0) {
                     throw new Exception("String is not double!");
@@ -34,7 +34,7 @@ public class Product {
             catch (Exception e)
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
-                scanner.nextLine();
+                //scanner.nextLine();
                 continue;
             }
 
