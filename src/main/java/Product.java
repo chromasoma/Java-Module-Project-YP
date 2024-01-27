@@ -14,7 +14,6 @@ public class Product {
             if (name == null || name.isEmpty())
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
-                continue;
             }
             else {
                 break;
