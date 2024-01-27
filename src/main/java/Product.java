@@ -43,7 +43,6 @@ public class Product {
             catch (Exception e)
             {
                 System.out.println("Неверное значение! Попробуйте еще раз.");
-                continue;
             }
 
         }
