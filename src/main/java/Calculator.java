@@ -16,7 +16,6 @@ public class Calculator {
             try
             {
                 temp = scanner.nextLine().trim();
-                //System.out.println("1"+temp+"2");
                 number = Integer.parseInt(temp);
                 if (number <= 1 || !temp.matches("^[0-9]+$"))
                 {
