@@ -8,9 +8,18 @@ public class Product {
     {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите название товара:");
-        name = scanner.nextLine(); // исправлено
-
+        while(true) {
+            System.out.println("Введите название товара:");
+            name = scanner.nextLine().trim(); // исправлено
+            if (name == null || name.isEmpty())
+            {
+                System.out.println("Неверное значение! Попробуйте еще раз.");
+                continue;
+            }
+            else {
+                break;
+            }
+        }
         System.out.println("Введите стоимость товара:");
         String temp;
         while(true)
@@ -19,7 +28,7 @@ public class Product {
             {
                 temp = scanner.nextLine().trim();
                 price = Double.parseDouble(temp);
-                if (price < 0) {
+                if (price <= 0) {
                     throw new Exception("Некорректные данные!");
                 }
                 Formatter f = new Formatter();
