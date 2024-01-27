@@ -34,7 +34,7 @@ public class Product {
                 String[] s = new String[4];
                 s = f.getRublesAndKopecks(price);
 
-                System.out.println(String.format("Товар %s с ценой %d %s %d %s успешно добавлен!",name, s[0], s[1], s[2], s[3]));
+                System.out.println(String.format("Товар %s с ценой %s %s %s %s успешно добавлен!", name, s[0], s[1], s[2], s[3]));
                 break;
             }
             catch (Exception e)

@@ -66,7 +66,7 @@ public class Calculator {
             System.out.println(g.getName() + " " + g.getPrice() + rr);
         }
         System.out.println("Каждый человек должен заплатить " +
-                String.format("%.2f", sum / number) + f.getRubles((int)(sum / number)));
+                String.format("%.2f", sum / number) + f.getRubles((int)(sum / number)) + ".");
     }
 
     public void addProduct(Product p)
